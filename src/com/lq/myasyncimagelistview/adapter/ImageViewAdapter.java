@@ -14,38 +14,38 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ImageViewAdapter extends ArrayAdapter<ImageItemBean>{
+public class ImageViewAdapter extends ArrayAdapter<ImageItemBean> {
 
 	private ArrayList<ImageItemBean> itemList;
 	private LayoutInflater inflater;
 	private int layoutID;
-	
+
 	public ImageViewAdapter(Context context, int Resource,
 			ArrayList<ImageItemBean> list) {
 		super(context, Resource, list);
 		this.itemList = list;
 		this.inflater = LayoutInflater.from(context);
 		this.layoutID = Resource;
-		
+
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder;
-		if(null == convertView){
+		if (null == convertView) {
 			convertView = inflater.inflate(layoutID, null);
 			viewHolder = new ViewHolder();
-			viewHolder.imageView image_item = (ImageView) convertView.findViewById(R.id.image_item);
-			TextView textView = (TextView) convertView.findViewById(R.id.textview);
-			
-		}else{
-			
+
+			viewHolder.imageView = (ImageView) convertView.findViewById(R.id.image_item);
+			viewHolder.textView = (TextView) convertView.findViewById(R.id.textview);
+		} else {
+
 		}
 		return super.getView(position, convertView, parent);
 	}
-	
-}
-static class ViewHolder{
-	public ImageView imageView;
-	private TextView textView;
+
+	class ViewHolder {
+		private ImageView imageView;
+		private TextView textView;
+	}
 }
