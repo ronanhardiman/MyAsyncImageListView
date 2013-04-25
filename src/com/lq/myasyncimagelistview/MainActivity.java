@@ -2,6 +2,7 @@ package com.lq.myasyncimagelistview;
 
 import java.util.Locale;
 
+import com.lq.myasyncimagelistview.imagecache.ImageCacheFragment;
 import com.lq.myasyncimagelistview.provider.Images;
 import com.lq.myasyncimagelistview.widget.AsyncImageView;
 
@@ -144,6 +145,9 @@ public class MainActivity extends FragmentActivity implements
 				break;
 			case 2:
 				fragment = new ImageLocalFragment();
+				break;
+			case 3:
+				fragment = new ImageCacheFragment();
 				break;
 			default:
 				break;
