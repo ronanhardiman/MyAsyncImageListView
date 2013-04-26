@@ -127,7 +127,7 @@ public class MainActivity extends FragmentActivity implements
 		
 		@Override
 		public Fragment getItem(int position) {
-			Log.e("lq", "getItem");
+//			Log.e("lq", "getItem");
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.

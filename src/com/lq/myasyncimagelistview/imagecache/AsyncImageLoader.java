@@ -38,7 +38,7 @@ public class AsyncImageLoader {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			imageView.setImageResource(R.drawable.ic_launcher);
+//			imageView.setImageResource(R.drawable.ic_launcher);
 		}
 		
 		@Override
@@ -91,9 +91,9 @@ public class AsyncImageLoader {
 		Bitmap bitmap = null;
 		
 		//first search from memoryCache
-		mCache.getBitmap(fileName);
+		bitmap = mCache.getBitmap(fileName);
 		//second search from fileCache
-		if(null == mCache){
+		if(null == bitmap){
 			File file = fCache.getFile(fileName);
 			if(null != file){
 				bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), null);

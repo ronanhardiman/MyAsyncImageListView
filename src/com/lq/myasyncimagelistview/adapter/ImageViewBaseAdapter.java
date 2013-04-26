@@ -1,7 +1,6 @@
 package com.lq.myasyncimagelistview.adapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.lq.myasyncimagelistview.R;
 import com.lq.myasyncimagelistview.bean.ImageItemBean;
@@ -12,23 +11,40 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ImageViewAdapter extends ArrayAdapter<ImageItemBean> {
+public class ImageViewBaseAdapter extends BaseAdapter{
+
 	private AsyncImageLoader asyncImageLoader;
 	private ArrayList<ImageItemBean> itemList;
 	private LayoutInflater inflater;
 	private int layoutID;
-
-	public ImageViewAdapter(Context context, int Resource,
-			ArrayList<ImageItemBean> list) {
-		super(context, Resource, list);
+	
+	public ImageViewBaseAdapter(Context context, int Resource,
+			ArrayList<ImageItemBean> list){
 		this.itemList = list;
 		this.inflater = LayoutInflater.from(context);
 		this.layoutID = Resource;
 		asyncImageLoader = AsyncImageLoader.getInstance(context);
+	}
+	
+	@Override
+	public int getCount() {
+		return itemList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
 	}
 
 	@Override
@@ -52,7 +68,7 @@ public class ImageViewAdapter extends ArrayAdapter<ImageItemBean> {
 		}
 		return convertView;
 	}
-
+	
 	class ViewHolder {
 		private ImageView imageView;
 		private TextView textView;

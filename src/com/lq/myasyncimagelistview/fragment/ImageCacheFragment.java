@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lq.myasyncimagelistview.R;
 import com.lq.myasyncimagelistview.adapter.ImageViewAdapter;
+import com.lq.myasyncimagelistview.adapter.ImageViewBaseAdapter;
 import com.lq.myasyncimagelistview.bean.ImageItemBean;
 import com.lq.myasyncimagelistview.provider.Images;
 
@@ -18,7 +19,10 @@ public class ImageCacheFragment extends Fragment {
 	
 	private ListView listView;
 	private ImageViewAdapter viewAdapter;
+	
 	private View imagecache_listview;
+	private ArrayList<ImageItemBean> imagesList;
+	private ImageViewBaseAdapter baseAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,28 +30,28 @@ public class ImageCacheFragment extends Fragment {
 		imagecache_listview = inflater.inflate(R.layout.imagecache, container, false);
 		
 		listView = (ListView) imagecache_listview.findViewById(R.id.listview);
-		viewAdapter = new ImageViewAdapter(getActivity(),R.layout.imagecache_item,new ArrayList<ImageItemBean>());
-		listView.setAdapter(viewAdapter);
-		initData();
+//		viewAdapter = new ImageViewAdapter(getActivity(),R.layout.imagecache_item,imagesList);
+//		listView.setAdapter(viewAdapter);
+		baseAdapter = new ImageViewBaseAdapter(getActivity(), R.layout.imagecache_item, imagesList);
+		listView.setAdapter(baseAdapter);
 		return imagecache_listview;
 	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		initData();
 	}
 
 	private void initData() {
-		ArrayList<ImageItemBean> imagesList = new ArrayList<ImageItemBean>();
+		imagesList = new ArrayList<ImageItemBean>();
 		int len = Images.imageThumbUrls.length;
-		for (int i = 0; i < len; i++) {
+		for (int i = 0; i < len/3; i++) {
 			ImageItemBean iBean = new ImageItemBean();
 			iBean.setPicture(Images.imageThumbUrls[i]);
 			iBean.setText("this is the : "+i);
 			imagesList.add(iBean);
 		}
-		viewAdapter.addAll(imagesList);
-		viewAdapter.notifyDataSetChanged();
 	}
 	
 }
