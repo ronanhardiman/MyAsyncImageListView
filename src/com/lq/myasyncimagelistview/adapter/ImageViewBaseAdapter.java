@@ -47,7 +47,7 @@ public class ImageViewBaseAdapter extends BaseAdapter{
 		return position;
 	}
 
-	@Override
+	/*@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder;
 		if (null == convertView) {
@@ -67,10 +67,23 @@ public class ImageViewBaseAdapter extends BaseAdapter{
 			viewHolder.textView.setText(iBean.getText());
 		}
 		return convertView;
+	}*/
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		View linear = inflater.inflate(layoutID, null);
+		ImageView image_view = (ImageView) linear.findViewById(R.id.image_item);
+		ImageItemBean iBean = itemList.get(position);
+		TextView textView = (TextView) linear.findViewById(R.id.textview);
+		asyncImageLoader.displayBitmap(image_view,iBean.getPicture() );
+		textView.setText(iBean.getText());
+		return linear;
 	}
+	
+	
 	
 	class ViewHolder {
 		private ImageView imageView;
 		private TextView textView;
 	}
+
 }
